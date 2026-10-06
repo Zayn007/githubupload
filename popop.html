@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+        integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        .button {
+            width: 50%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        button {
+            width: 36%;
+            padding: 20px 0;
+            font-size: 30px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .6), rgba(0, 0, 0, .6), rgba(0, 0, 0, .8));
+        }
+
+        .popup {
+            position: fixed;
+            top: 17%;
+            left: 22%;
+            transform: scale(0);
+            transition: all .2s linear;
+        }
+
+        .popup img {
+            width: 100%;
+        }
+
+        .popup i {
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            font-size: 25px;
+            color: darkred;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="button">
+
+        <button type="submit">Click Me</button>
+    </div>
+
+    <div class="popup">
+        <img src="spiderman.jpeg" alt="spiderman">
+        <i class="fa-solid fa-xmark" id="xmark"></i>
+    </div>
+
+
+
+    <script>
+        document.querySelector('button').addEventListener('click', function () {
+            // let popup = document.querySelector(".popup");
+            // popup.style.transform = "scale(1)";
+            document.querySelector(".popup").style.transform = "scale(1)";
+
+        });
+
+        document.querySelector('#xmark').addEventListener('click', function () {
+            let popup = document.querySelector(".popup");
+            popup.style.transform = "scale(0)";
+            // document.querySelector(".popup").style.transform = "scale(0)";
+
+        });
+
+
+
+    </script>
+</body>
+
+</html>

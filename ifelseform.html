@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url(https://images.hdqwalls.com/wallpapers/sunset-over-sea-4k-sl.jpg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .form-data {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 45%;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .form-data label {
+            font-size: 20px;
+            padding: 5px;
+            color: white;
+
+        }
+
+        .form-data input {
+            padding: 15px 0;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .form-data button {
+            padding: 15px 0;
+            margin: 15px 0;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 20px;
+            background-color: brown;
+        }
+
+        span {
+            color: white;
+            font-size: 18px;
+            text-transform: capitalize;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-data">
+
+        <label for="uname">Username</label>
+        <input id="uname" type="text">
+        <span id="unerror"></span>
+
+        <label for="Password">Password</label>
+        <input type="password" id="pwd">
+        <span id="perror"></span>
+
+        <label for="email">Email</label>
+        <input type="email" id="email">
+        <span id="eerror"></span>
+
+        <button type="submit" onclick="myFunction()">Submit</button>
+
+    </div>
+
+    </form>
+
+    <script>
+
+        function myFunction() {
+            let username = document.querySelector('#uname').value;
+            username.innerText = "";
+
+            let unerror = document.querySelector('#unerror');
+
+            if (username == "") {
+                unerror.innerText = "please enter username";
+            }
+
+            let password = document.querySelector('#pwd').value;
+            password.innerText = "";
+
+            let perror = document.querySelector('#perror');
+
+            if (password == "") {
+
+                perror.innerText = "please enter password";
+            }
+
+            let email = document.querySelector('#email').value;
+            email.innerText = "";
+
+            let eerror = document.querySelector('#eerror');
+
+            if (email == "") {
+                eerror.innerText = "please enter email";
+            }
+
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | js</title>
+    <!-- icons cdn links  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Nunito", sans-serif;
+        }
+
+        .dashboard {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background: #efefefef;
+            height: 100vh;
+        }
+
+        .dashboard aside {
+            width: 18%;
+            background-color: darkslateblue;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .dashbaord-main {
+            width: 75%;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+        .dashbaord-main #productForm {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashbaord-main #productForm h2 {
+            margin-bottom: 10px;
+            cursor: default;
+        }
+
+        .dashbaord-main #productForm input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+            border: 1px solid lightslategray;
+            border-radius: 5px;
+        }
+
+        .dashbaord-main #productForm button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: darkslateblue;
+            color: white;
+            font-size: 18px;
+            width: 15%;
+            cursor: pointer;
+        }
+
+        #userList {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        #userList .product {
+            width: 48%;
+            background-color: white;
+            color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+
+        .product .prd-img {
+            width: 30%;
+            padding: 10px 0 5px 15px;
+        }
+
+        .product .prd-img img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .product .prd-data {
+            width: 60%;
+        }
+
+        .product .prd-data p {
+            color: darkslateblue;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .product .prd-data span {
+            margin: 15px 0;
+            display: inline-block;
+        }
+
+        .product .prd-data .btn button {
+            background-color: darkslateblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+        <aside>
+            <h1>
+                Dashboard
+            </h1>
+        </aside>
+        <div class="dashbaord-main">
+            <form id="productForm">
+                <h2>Add Product</h2>
+                <input type="text" placeholder="enter product name" id="name">
+                <input type="text" placeholder="enter product price" id="price">
+                <input type="text" placeholder="enter image URL" id="image">
+                <input type="text" placeholder="enter product info" id="disc">
+                <button type="submit" onclick="getProducts()">Submit</button>
+            </form>
+
+            <div id="userList">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const api_url = 'https://6a89ac3f20fcac8c1edee943.mockapi.io/product'
+        const name = document.querySelector("#name")
+        const price = document.querySelector('#price')
+        const image = document.querySelector('#image')
+        const disc = document.querySelector('#disc')
+        const userList = document.querySelector('#userList')
+        const productForm = document.querySelector('#productForm')
+
+        // get method
+
+        function getProducts() {
+
+            fetch(api_url).then((response) => {
+                return response.json()
+            }).then((data) => {
+                userList.innerHTML = ''
+                data.forEach((user) => {
+                    userList.innerHTML += `
+                    
+                    <div class="product">
+                        <div class="prd-img">
+                            <img src=${user.productImage} alt="">
+                        </div>
+                        <div class="prd-data">
+                            <h2>${user.productName}</h2>
+                            <p>₹ ${user.productPrice}</p>
+                            <span>${user.productDiscription}</span>
+                            <div class="btn">
+                                <button onclick="updateProducts(${user.id})"><i class="fa-regular fa-pen-to-square"></i> &nbsp; Edit</button>
+                                <button onclick="deleteProducts(${user.id})"><i class="fa-solid fa-trash"></i> &nbsp; Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    `
+                })
+            }).catch(() => {
+                console.log('error')
+            })
+
+        }
+
+        getProducts()
+
+        // post method 
+
+        productForm.addEventListener('submit', function (e) {
+            e.preventDefault()
+
+            const prdname = name.value;
+            const prdprice = price.value;
+            const prdimage = image.value;
+            const prdDiscription = disc.value;
+
+            fetch(api_url, {
+                method: 'POST',
+                body: JSON.stringify({
+                    productName: prdname,
+                    productPrice: prdprice,
+                    productImage: prdimage,
+                    productDiscription: prdDiscription,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log('post', data)
+                getProducts()
+            })
+
+        })
+
+        // PUT method
+
+
+        function updateProducts(id) {
+
+            const newprdname = prompt("enter new name");
+            const newprdprice = prompt("enter new price");
+            const newprdimage = prompt("enter new link for image");
+            const newprddiscription = prompt("enter new description");
+
+            if (!newprdname || !newprdprice || !newprdimage || !newprddiscription) return;
+
+            fetch(`${api_url}/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    productName: newprdname,
+                    productPrice: newprdprice,
+                    productImage: newprdimage,
+                    productDiscription: newprddiscription,
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8'
+                }
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log('product updated', data)
+                productForm.reset();
+                getProducts()
+            })
+        }
+
+        // DELETE method
+
+        function deleteProducts(id) {
+
+            fetch(`${api_url}/${id}`, {
+                method: 'DELETE',
+            }).then((response) => {
+                return response.json();
+            }).then((data) => {
+                console.log('product deleted', data);
+                getProducts();
+            })
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

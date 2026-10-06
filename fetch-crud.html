@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch | js</title>
+</head>
+
+<body>
+
+    <form id="userform">
+        <input type="text" id="name">
+        <input type="email" id="email">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="userdata">
+
+    </div>
+
+
+    <script>
+
+        const api_link = 'https://6a8ede16a12b7de8cc0f11b2.mockapi.io/crud'
+        const form = document.querySelector("#userform");
+        const nameInput = document.querySelector("#name");
+        const emailInput = document.querySelector("#email")
+        const userList = document.querySelector("#userdata");
+
+        // GET method
+
+        function getUsers() {
+
+            fetch(api_link).then((response) => {
+
+                return response.json()
+            }).then((data) => {
+
+                userList.innerHTML = ""
+                data.forEach((user) => {
+                    userList.innerHTML += `
+
+                    <div>
+                    <h3>${user.username}</h3>
+                    <p>${user.useremail}</p>
+                    <button onclick="updateUser(${user.id})">Edit</button>
+                    <button onclick="deleteUser(${user.id})">Delete</button>
+                    </div>
+                        
+                     `
+                })
+
+            }).catch(() => {
+
+                console.error('Fetch error:', error)
+            });
+
+
+        }
+
+        getUsers();
+
+        // POST method
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const name = nameInput.value;
+            const email = emailInput.value;
+
+            if (!name || !email) return;
+
+            fetch(api_link, {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: name,
+                    useremail: email
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log("Data Created", data);
+                form.reset();
+                getUsers();
+            }).catch((error) => {
+                console.error("Created error:", error)
+            })
+
+
+        });
+
+        //    PUT method
+
+        function updateUser(id) {
+            const newname = prompt("Enter New Name")
+            const newemail = prompt("Enter New Email")
+
+            if (!newname || !newemail) return;
+
+            fetch(`${api_link}/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    username: newname,
+                    useremail: newemail
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                }
+            }).then((response) => {
+                return response.json()
+            }).then((data) => {
+                console.log("Data Updated", data);
+                getUsers();
+            }).catch((error) => {
+                console.error("Update error:", error)
+            })
+        }
+
+        // DELETE method
+
+
+        function deleteUser(id) {
+            fetch(`${api_link}/${id}`, {
+                method: "DELETE"
+            }).then((response) => {
+                return response.json();
+            }).then((data) => {
+                console.log("Data deleted", data);
+                getUsers();
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

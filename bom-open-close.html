@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM | open close | js</title>
+</head>
+
+<body>
+
+    <button onclick="myfunction()">open</button>
+    <button onclick="closd()">close</button>
+
+
+    <script>
+        let newtab;
+        function myfunction() {
+            newtab = window.open("http://127.0.0.1:5500/css/disney.html", "_blank");
+
+        };
+
+        function closd() {
+
+            newtab.close();
+            //  if(newtab){
+            //     newtab.close();
+            // } else{
+            //     alert("no new tab is currently open");
+            // }
+        };
+
+
+    </script>
+
+</body>
+
+</html>

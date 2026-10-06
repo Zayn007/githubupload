@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch | js </title>
+</head>
+<body>
+
+    <form id="userForm">
+        <input type="text" id="name">
+        <input type="email" id="email">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="userList">
+        
+    </div>
+
+
+    <script>
+
+        // mockapi 
+
+        // synatx 
+
+        // fetch(url).then((response)=>{
+            
+        //     return response.json()
+            
+        // }).then((data)=>{
+
+        // }).catch((error)=>{
+
+        // })    
+        
+        
+
+        const api_url = 'https://6a8ede16a12b7de8cc0f11b2.mockapi.io/crud'
+        const form = document.querySelector('#userForm')
+        const nameInput = document.querySelector('#name')
+        const emailInput = document.querySelector('#email')
+        const userList = document.querySelector('#userList')
+
+
+        // Get Method 
+
+        function getUsers(){
+
+            fetch(api_url).then((response)=>{
+                return response.json()
+            }).then((data)=>{
+                userList.innerHTML = ''
+                data.forEach(function(user){
+                userList.innerHTML += `
+                <div>    
+                    <h3>${user.username}</h3>
+                    <p>${user.useremail}</p>
+                    <button>edit</button>
+                    <button>delete</button>
+                </div>
+                `
+                })
+            }).catch(()=>{
+
+            })
+
+        }
+
+        getUsers()
+
+
+        // Post Method
+
+        form.addEventListener('submit',function(e){
+            e.preventDefault()
+
+            const name = nameInput.value;
+            const email = emailInput.value;
+
+            fetch('https://6a8ede16a12b7de8cc0f11b2.mockapi.io/crud', {
+            method: 'POST',
+            body: JSON.stringify({
+                username : name,
+                useremail : email
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            }).then((response)=>{
+                return response.json()
+            }).then((data)=>{
+                console.log('created',data)
+            })    
+            getUsers()
+            
+        })        
+
+
+        // getUsers()
+
+    </script>
+
+</body>
+</html>

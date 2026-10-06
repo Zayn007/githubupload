@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List | js</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .todo {
+            width: 60%;
+            margin: 20% auto;
+            /* padding: 10px 20px 20px 20px; */
+            padding: 30px;
+            background: linear-gradient(rebeccapurple, rgba(1, 1, 1, 0.5));
+        }
+
+        .todo h2 {
+            font-size: 30px;
+        }
+
+        .todo-data {
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+
+        }
+
+        .todo-data input {
+            width: 100%;
+            padding: 20px 0;
+            margin: 10px 0;
+            border: 1px solid rebeccapurple;
+            border-radius: 15px;
+            font-size: 20px;
+        }
+
+        #ans {
+            padding: 10px 30px;
+            position: absolute;
+            right: 1%;
+            top: 24%;
+            border-radius: 15px;
+            border: 1px solid rebeccapurple;
+            font-size: 18px;
+
+        }
+
+        .list-data {
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="todo">
+        <h2>ToDo List</h2>
+        <div class="todo-data">
+            <input type="text" id="inp">
+            <button type="submit" id="ans">Submit</button>
+        </div>
+        <div class="list-data">
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+        document.querySelector("#ans").addEventListener("click", function () {
+            let input = document.querySelector("#inp");
+            let list = document.querySelector(".list-data");
+            list.innerHTML += `
+             ${input.value}
+
+            <button type="submit" onclick="this.parentElement.remove()">Remove</button>        
+                <br>`
+        });
+
+
+
+    </script>
+</body>
+
+</html>

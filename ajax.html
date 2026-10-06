@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        const url = 'https://jsonplaceholder.typicode.com/users';
+
+        function Axios(method, url, body) {
+            return new Promise((resolve, reject) => {
+
+                const xhr = new XMLHttpRequest();
+
+                xhr.responseType = "json";
+
+                xhr.open(method, url);
+
+                xhr.setRequestHeader("Content-Type", "application/json")
+
+                xhr.onload = () => {
+                    if (xhr.status >= 400) {
+                        reject('request failed');
+                    } else {
+                        resolve(xhr.response);
+                    }
+                }
+
+                xhr.onerror = () => {
+
+                    console.log("Error !!!!!");
+
+                }
+
+                xhr.send(JSON.stringify(body));
+            })
+        }
+
+
+
+        Axios("get", url).then((resolve) => {
+            console.log(resolve);
+        }).catch((reject) => {
+
+            console.log(reject);
+
+        })
+
+        Axios('post', url, {
+            name: "jay",
+            age: 26,
+            gender: "male"
+        }).then((resolve) => {
+
+            console.log("code is running", resolve);
+
+        }).catch((reject) => {
+
+            console.log(reject);
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

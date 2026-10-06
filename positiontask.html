@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .main {
+        display: flex;
+        width: 90%;
+        margin: 0 Auto;
+        padding: 50px 0;
+        justify-content: space-between;
+        align-items: flex-end;
+
+    }
+
+    .left {
+        width: 50%;
+    }
+
+    .right {
+        width: 45%;
+        height: 85vh;
+        background-image: url(businesspeople-discussing-while-using-digital-WFGVC3X-744x768.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-color: rgb(42, 192, 252);
+        background-blend-mode: soft-light;
+        position: relative;
+    }
+
+    .left label {
+        background: linear-gradient(to top, rgb(54, 168, 212), transparent, transparent);
+    }
+
+    h1 {
+        font-size: 50px;
+        font-weight: 600;
+        padding: 20px 0;
+        width: 68%;
+    }
+
+    .left p {
+        padding: 20px 0;
+        padding-bottom: 70px;
+        width: 68%;
+    }
+
+    button {
+        color: white;
+        font-weight: 500;
+        background: linear-gradient(to top, rgb(54, 168, 212), rgb(144, 215, 245));
+        border: none;
+        padding: 10px 40px;
+        margin-bottom: 100px;
+    }
+
+    .image-text {
+        color: white;
+        position: absolute;
+        right: 8%;
+        bottom: 10%;
+    }
+
+    .image-text h2 {
+        font-size: 25px;
+    }
+
+    .image-text p {
+        font-size: 13px;
+    }
+
+    .card1 {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        position: absolute;
+        left: -40%;
+        bottom: 50%;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+
+    }
+
+    .card2 {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        position: absolute;
+        left: -40%;
+        bottom: 20%;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+
+    }
+
+    .card h2 {
+        display: inline;
+        font-size: 25px;
+        margin-bottom: 20px;
+        width: fit-content;
+        background: linear-gradient(to top, rgb(54, 168, 212), transparent, transparent);
+    }
+
+    .card { 
+        font-size: 15px;
+        padding: 25px;
+        background-color: white;
+
+    }
+    
+    i{
+        margin: 10px 40px;
+        font-size: 40px;
+    }
+
+</style>
+
+<body>
+
+    <div class="main">
+        <div class="left">
+            <label for="about">ABOUT</label>
+            <h1>We are Specialised In Branding</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quam explicabo recusandae molestiae
+                libero quos doloribus. Delectus praesentium aliquid dicta fugiat commodi?</p>
+            <button>READ MORE</button>
+        </div>
+
+        <div class="right">
+
+            <div class="image-text">
+                <h2>Buid Your Dream</h2>
+                <p>We Only Hire Great People</p>
+            </div>
+
+            <div class="card1">
+                <div class="card">
+                    <h2>We are Specialised</h2>
+                    <i class="fa-regular fa-star"></i>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam repellendus beatae, non repellat
+                        enim qui adipisci! Aliquam beatae voluptas eum?</p>
+                </div>
+            </div>
+
+            <div class="card2">
+                <div class="card">
+                    <h2>We are Specialised</h2>
+                    <i class="fa-solid fa-gear"></i>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto perferendis molestiae maxime
+                        reiciendis unde accusantium maiores.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
